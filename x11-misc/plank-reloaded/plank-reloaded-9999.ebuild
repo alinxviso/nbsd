@@ -33,6 +33,7 @@ DEPEND="
 		>=x11-libs/gdk-pixbuf-2.0.1
 		>=x11-libs/gtk+-3.0.1
 		>=x11-libs/libwnck-31.0.1
+		x11-libs/bamf
 		x11-libs/libX11
 		x11-libs/libXfixes
 		x11-libs/libXi
