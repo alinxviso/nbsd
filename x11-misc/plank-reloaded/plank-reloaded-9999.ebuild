@@ -56,18 +56,18 @@ src_unpack() {
 }
 
 src_configure() {
-#meson setup --prefix="/usr" build || die "meson setup failed with \"meson setup --prefix='/usr' build\""
-	meson_src_configure || die "meson setup failed"
+#meson setup --prefix="/usr" build 
+	meson_src_configure
 }
 
 src_compile() {
-	meson_src_compile || die "meson compile failed"
-#	meson compile -C build || die "compile failed with \"meson compile -C build\""
+	meson_src_compile
+#	meson compile -C build
 }
 
 src_install() {
 	meson_src_install
-#	meson install -C build || die "error installing with \"meson install -C build\""
+#	meson install -C build 
 }
 
 pkg_postinst() {
