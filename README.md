@@ -6,6 +6,8 @@ I will also consider maintaining projects that aren't in any "official" repo/ove
 
 So far these are the ebuilds in this overlay, with the overlay they're from in the same format portage uses
 
+```
 dev-python/elevate::oiledmachine-repository
 x11-apps/ocs-url-9999::rion
 x11-misc/plank-reloaded-9999::nbsd      # this one!!!
+```
