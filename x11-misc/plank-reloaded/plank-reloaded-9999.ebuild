@@ -14,7 +14,7 @@ if [[ ${PV} == 9999 ]]; then
 	EGIT_REPO_URI="https://github.com/zquestz/${PN}"
 else
 	SRC_URI="https://github.com/zquestz/${PN}/archive/refs/tags/${PV}.tar.gz" -> ${P}.tar.gz
-	KEYWORDS="~amd64"
+	KEYWORDS=""
 fi
 LICENSE="GPL-3.0"
 SLOT="0"
@@ -68,4 +68,10 @@ src_compile() {
 src_install() {
 	meson_src_install
 #	meson install -C build || die "error installing with \"meson install -C build\""
+}
+
+pkg_postinst() {
+	"${ROOT}"/usr/bin/glib-compile-schemas '"${ROOT}"/usr/share/glib-2.0/schemas'
+	"${ROOT}"/usr/bin/gtk-update-icon-cache -q -t -f '"${ROOT}"/usr/share/icons/hicolor'
+	"${ROOT}"/usr/bin/update-desktop-database -q '"${ROOT}"/usr/share/applications'
 }
