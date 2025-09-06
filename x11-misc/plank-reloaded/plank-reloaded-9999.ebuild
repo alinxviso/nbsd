@@ -4,7 +4,7 @@
 
 EAPI=8
 
-inherit meson pkgconfig
+inherit meson
 
 DESCRIPTION="A lightweight, customizable Linux dock with modern docklets and GTK support."
 HOMEPAGE="https://github.com/zquestz/plank-reloaded"
@@ -23,16 +23,16 @@ IUSE="at-spi2-atk"
 
 DEPEND="
 		at-spi2-atk? ( app-accessibility/at-spi2-atk )
-		!at-spi2-atk? ( dev-libs/atk/at-spi2-atk)
+		!at-spi2-atk? ( dev-libs/atk )
 		dev-libs/glib
 		dev-libs/libdbusmenu
 		dev-libs/libgee
 		gnome-base/gnome-menus
 		sys-libs/glibc
 		x11-libs/cairo
-		>=x11-libs/gdx-bixbuf-2*
-		>=x11-libs/gtk+-3*
-		>=x11-libs/libwnck-31*
+		>=x11-libs/gdk-pixbuf-2.0.1
+		>=x11-libs/gtk+-3.0.1
+		>=x11-libs/libwnck-31.0.1
 		x11-libs/libX11
 		x11-libs/libXfixes
 		x11-libs/libXi
@@ -51,17 +51,17 @@ BDEPEND="
 src_unpack() {
 	if [[ "${PV}" == *9999* ]]; then
 		git-r3_src_unpack
-	else
 	fi
+}
 
 src_configure() {
-	meson setup --prefix="/usr" build
+	meson setup --prefix="/usr" build || die "meson setup failed with 'meson setup --prefix=\"/usr\" build'"
 }
 
 src_compile() {
-	meson compile -C build
+	meson compile -C build || die "compile failed with 'meson compile -C build'"
 }
 
 src_install() {
-	echo "${D}"
+	meson install -C build || die "error installing with 'meson install -C build'"
 }
