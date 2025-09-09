@@ -49,11 +49,11 @@ BDEPEND="
 		gnome-base/gnome-common
 		"
 
+if [[ "${PV}" == *9999* ]]; then
 src_unpack() {
-	if [[ "${PV}" == *9999* ]]; then
 		git-r3_src_unpack
-	fi
 }
+fi
 ## Else uses default src_unpack for tar.gz
 
 src_configure() {
