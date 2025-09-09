@@ -4,7 +4,7 @@
 
 EAPI=8
 
-inherit meson
+inherit meson xdg-utils
 
 DESCRIPTION="A lightweight, customizable Linux dock with modern docklets and GTK support."
 HOMEPAGE="https://github.com/zquestz/plank-reloaded"
@@ -12,13 +12,13 @@ if [[ ${PV} == 9999 ]]; then
 	inherit git-r3
 	PROPERTIES="live"
 	EGIT_REPO_URI="https://github.com/zquestz/${PN}"
-else
-	SRC_URI="https://github.com/zquestz/${PN}/archive/refs/tags/${PV}.tar.gz" -> ${P}.tar.gz
 	KEYWORDS=""
+else
+	SRC_URI="${HOMEPAGE}/archive/refs/tags/${PV}.tar.gz -> ${P}.tar.gz"
+	KEYWORDS="~amd64"
 fi
 LICENSE="GPL-3.0"
 SLOT="0"
-KEYWORDS=""
 IUSE="at-spi2-atk"
 
 DEPEND="
@@ -54,6 +54,7 @@ src_unpack() {
 		git-r3_src_unpack
 	fi
 }
+## Else uses default src_unpack for tar.gz
 
 src_configure() {
 #meson setup --prefix="/usr" build 
@@ -71,7 +72,14 @@ src_install() {
 }
 
 pkg_postinst() {
-	"${ROOT}"/usr/bin/glib-compile-schemas '"${ROOT}"/usr/share/glib-2.0/schemas'
-	"${ROOT}"/usr/bin/gtk-update-icon-cache -q -t -f '"${ROOT}"/usr/share/icons/hicolor'
-	"${ROOT}"/usr/bin/update-desktop-database -q '"${ROOT}"/usr/share/applications'
+	/usr/bin/glib-compile-schemas '/usr/share/glib-2.0/schemas'
+	/usr/bin/gtk-update-icon-cache -q -t -f '/usr/share/icons/hicolor'
+	/usr/bin/update-desktop-database -q '/usr/share/applications'
+	xdg_icon_cache_update
+}
+pkg_postrm() {
+	/usr/bin/glib-compile-schemas '/usr/share/glib-2.0/schemas'
+	/usr/bin/gtk-update-icon-cache -q -t -f '/usr/share/icons/hicolor'
+	/usr/bin/update-desktop-database -q '/usr/share/applications'
+	xdg_icon_cache_update
 }
