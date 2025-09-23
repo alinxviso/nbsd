@@ -11,4 +11,5 @@ dev-python/elevate::oiledmachine-repository
 x11-apps/ocs-url-9999::rion
 x11-libs/bamf-9999::edgets
 x11-misc/plank-reloaded-9999::nbsd      # this one!!!
+x11-misc/plank-reloaded-0.11.149 to 0.11.151   # also me!!!
 ```
