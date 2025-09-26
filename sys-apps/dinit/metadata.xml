@@ -6,7 +6,7 @@
 		<name>ant</name>
 	</maintainer>
 	<use>
-		<flag name="build-shutdown">Build shutdown, reboot, soft-reboot, and halt scripts</flag>
+		<flag name="build-shutdown">Build shutdown, reboot, soft-reboot, and halt binaries</flag>
 		<flag name="cgroups">Enable Cgroups support</flag>
 		<flag name="fuzzer">Build fuzz target</flag>
 		<flag name="igr-tests">Build integration tests</flag>

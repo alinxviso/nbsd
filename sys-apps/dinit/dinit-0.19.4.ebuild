@@ -57,14 +57,14 @@ src_install() {
 
 
 pkg_postinst() {
-	eqawarn "If you want to use ${PV} as init you have 3 choices:"
-	eqawarn "change kernel command line in your bootloader"
-	eqawarn "change kernel command line in /etc/kernel/cmdline (if applicable)"
-	eqawarn "manually create a symlink from /sbin/dinit to /sbin/init"
-	einfo  "A \"getting started\" file has been installed into /usr/doc/${PN-${PV}}"
+	ewarn "If you want to use ${PV} as init you have 3 choices:"
+	ewarn "change kernel command line in your bootloader"
+	ewarn "change kernel command line in /etc/kernel/cmdline (if applicable)"
+	ewarn "manually create a symlink from /sbin/dinit to /sbin/init"
+	elog  "A \"getting started\" file has been installed into /usr/doc/${PN-${PV}}"
 }
 
 pkg_postrm() {
-	eqawarn "Please ensure that ${PV} is no longer set as init if"
-	eqawarn "it was before to ensure a bootable system."
+	ewarn "Please ensure that ${PV} is no longer set as init if"
+	ewarn "it was before to ensure a bootable system."
 }
