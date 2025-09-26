@@ -65,6 +65,5 @@ pkg_postinst() {
 }
 
 pkg_postrm() {
-	ewarn "Please ensure that ${PV} is no longer set as init if"
-	ewarn "it was before to ensure a bootable system."
+	ewarn "Please ensure that ${PV} is not set as init to unsure a bootable system"
 }
