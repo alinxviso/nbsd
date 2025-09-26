@@ -57,6 +57,9 @@ fi
 ## Else uses default src_unpack for tar.gz
 
 src_configure() {
+if [[ "${PV}" != 9999 ]]; then
+	MYMESONARGs="-Dproduction-release=true"
+fi
 #meson setup --prefix="/usr" build 
 	meson_src_configure
 }
