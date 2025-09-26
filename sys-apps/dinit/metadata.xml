@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "https://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="person">
+		<email>marxguey@proton.me</email>
+		<name>ant</name>
+	</maintainer>
+	<use>
+		<flag name="build-shutdown">Build shutdown, reboot, soft-reboot, and halt scripts</flag>
+		<flag name="cgroups">Enable Cgroups support</flag>
+		<flag name="fuzzer">Build fuzz target</flag>
+		<flag name="igr-tests">Build integration tests</flag>
+		<flag name="man">Install man pages</flag>
+		<flag name="unit-test">Build unit tests</flag>
+	</use>
+</pkgmetadata>

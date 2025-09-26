@@ -13,25 +13,21 @@ if [[ ${PV} == 9999 ]]; then
 	EGIT_REPO_URI="https://github.com/davmac314/${PN}"
 	KEYWORDS=""
 else
-	SRC_URI=${HOMEPAGE}
-#	SRC_URI="${HOMEPAGE}/archive/refs/tags/${PV}.tar.gz -> ${P}.tar.gz"
+	SRC_URI="${HOMEPAGE}/archive/refs/tags/v${PV}.tar.gz -> ${P}.tar.gz"
 	KEYWORDS="~amd64"
 fi
 LICENSE="Apache-2.0"
 SLOT="0"
-IUSE="+build-shutdown +cgroups clang fuzzer igr-tests +man unit-test"
+IUSE="+build-shutdown +cgroups fuzzer igr-tests +man unit-test"
 
-DEPEND="
-	one
-"
+#DEPEND=
 RDEPEND="${DEPEND}"
 BDEPEND="
-		!clang? ( >=sys-devel/gcc-11* )
-		clang? ( >=llvm-core/clang-7* )
+		>=sys-devel/gcc-11.0.0
 		dev-build/make
 "
 # files to be saved in /usr/share/doc/${PN}-${PV}
-DOCS=(CONTRIBUTORS LICENSE doc/)
+DOCS=(CONTRIBUTORS LICENSE doc/CODE-STYLE doc/DESIGN doc/SECURITY doc/getting_started.md doc/linux/DINIT-AS-INIT.md)
 
 if [[ "${PV}" == *9999* ]]; then
 src_unpack() {
@@ -49,28 +45,38 @@ local emesonargs=(
 	$(meson_use man man-pages)
 	$(meson_use igr-tests)
 )
+
 # args that are mandatory, set by ebuild
 MYMESONARGS="-Dshutdown-prefix=dinit-"
+
 #meson setup --prefix="/usr" build 
 	meson_src_configure
 }
 
 src_compile() {
-	meson_src_compile
 #	meson compile -C build
+	meson_src_compile
 }
 
 src_install() {
-	meson_src_install
 #	meson install -C build 
+	meson_src_install
+	dofishcomp contrib/shell-completion/fish/dinitctl.fish
+	dozshcomp  contrib/shell-completion/zsh/_dinit
+	dobashcomp contrib/shell-completion/bash/dinitctl
+#	cp contrib/shell-completion/fish/dinitctl.fish /usr/share/fish/vendor_completions.d/ yadayadayada
 }
 
 
-if [[ use shell-completion  ]]
 pkg_postinst() {
-	cp contrib/shell-completion/fish/dinitctl.fish /usr/share/fish/vendor_completions.d/
+	eqawarn "If you want to use ${PV} as init you have 3 choices:"
+	eqawarn "change kernel command line in your bootloader"
+	eqawarn "change kernel command line in /etc/kernel/cmdline (if applicable)"
+	eqawarn "manually create a symlink from /sbin/dinit to /sbin/init"
+	einfo  "A \"getting started\" file has been installed into /usr/doc/${PN-${PV}}"
 }
 
 pkg_postrm() {
-
+	eqawarn "Please ensure that ${PV} is no longer set as init if"
+	eqawarn "it was before to ensure a bootable system."
 }
