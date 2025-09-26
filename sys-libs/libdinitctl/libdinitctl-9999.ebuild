@@ -13,7 +13,7 @@ LICENSE="BSD-2-Clause"
 SLOT="0"
 KEYWORDS=""
 
-IUSE="+udev"
+#IUSE="+udev"
 
 DEPEND="sys-apps/dinit"
 RDEPEND="${DEPEND}"
@@ -24,7 +24,7 @@ src_unpack() {
 }
 
 src_configure() {
-	$(meson_feature udev libudev )
+#	$(meson_feature udev libudev )
 	meson_src_configure
 }
 
