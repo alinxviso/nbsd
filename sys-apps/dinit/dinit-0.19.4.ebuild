@@ -17,7 +17,7 @@ IUSE="+build-shutdown +cgroups fuzzer igr-tests +man unit-test"
 RDEPEND="${DEPEND}"
 BDEPEND="
 		>=sys-devel/gcc-11.0.0
-		dev-build/make
+		dev-build/meson
 "
 # files to be saved in /usr/share/doc/${PN}-${PV}
 DOCS=(CONTRIBUTORS LICENSE doc/CODE-STYLE doc/DESIGN doc/SECURITY doc/getting_started.md doc/linux/DINIT-AS-INIT.md)
