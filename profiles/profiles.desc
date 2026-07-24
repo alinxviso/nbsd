@@ -1,0 +1,3 @@
+amd64 hardened-desktop stable
+amd64 hardened-desktop-systemd stable
+amd64 hardened-desktop-split-usr stable
