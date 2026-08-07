@@ -21,13 +21,15 @@ LICENSE="GPL-3.0"
 SLOT="0"
 #IUSE=""
 
-DEPEND="media-video/ffmpeg
+DEPEND="acct-user/navidrome
 		"
-RDEPEND="${DEPEND}"
+RDEPEND="${DEPEND}
+media-video/ffmpeg"
 BDEPEND="dev-lang/go
 		>=net-libs/nodejs-24*
 		"
 
+# INST_DIR="/opt/navidrome"
 if [[ "${PV}" == *9999* ]]; then
 src_unpack() {
 		git-r3_src_unpack
@@ -36,13 +38,21 @@ src_unpack() {
 fi
 
 src_configure() {
-
+	emake setup
 }
 
 src_compile() {
+	emake build
 }
 
 src_install() {
+	dodir /opt/navidrome
+	insinto /opt/navidrome
+	doins navidrome
+	dodir /etc/navidrome
+	
+	keepdir /var/lib/navidrome
+	fowners navidrome:navidrome /var/lib/navidrome
 }
 
 pkg_postinst() {
