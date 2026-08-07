@@ -1,10 +1,10 @@
 # Copyright 2025 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# Dependencies taken from https://aur.archlinux.org/packages/navidrome-git
+# Dependencies taken from https://aur.archlinux.org/packages/navidrome-git and https://www.navidrome.org/docs/installation/build-from-source
 
 EAPI=8
 
-inherit go-module
+inherit go-module greadme
 
 DESCRIPTION="Navidrome is a self-hosted, open source music server and streamer."
 HOMEPAGE="https://www.navidrome.org"
@@ -14,12 +14,13 @@ if [[ ${PV} == 9999 ]]; then
 	EGIT_REPO_URI="https://github.com/navidrome/${PN}"
 	KEYWORDS=""
 else
-	SRC_URI="https://github.com/navidrome/navidrome/archive/refs/tags/${PV}.tar.gz -> ${P}.tar.gz"
+	SRC_URI="https://github.com/navidrome/navidrome/archive/refs/tags/v${PV}.tar.gz -> ${P}.tar.gz"
 	KEYWORDS="~amd64"
 fi
 LICENSE="GPL-3.0"
 SLOT="0"
 #IUSE=""
+EGO_SUM=$(cat go.sum | cut -d" " -f1,2 | awk '{print "\""$0"\""}')
 
 DEPEND="acct-user/navidrome
 		"
@@ -27,6 +28,7 @@ RDEPEND="${DEPEND}
 media-video/ffmpeg"
 BDEPEND="dev-lang/go
 		>=net-libs/nodejs-24*
+		virtual/zlib
 		"
 
 # INST_DIR="/opt/navidrome"
@@ -46,17 +48,31 @@ src_compile() {
 }
 
 src_install() {
+	greadme_stdin <<-EOF
+	To start the service immediately, run:
+	  rc-service <service_name> start
+
+	To start the service at boot, run:
+	  rc-update add <service_name> default
+	EOF
 	dodir /opt/navidrome
-	insinto /opt/navidrome
-	doins navidrome
+	fowners navidrome:navidrome /opt/navidrome
+	exeinto /opt/navidrome
+	doexe navidrome
 	dodir /etc/navidrome
-	
+	insinto /etc/navidrome
+	doins release/linux/navidrome.toml
 	keepdir /var/lib/navidrome
-	fowners navidrome:navidrome /var/lib/navidrome
+	fowners -R navidrome:navidrome /var/lib/navidrome
+	doinitd contrib/navidrome
+	#systemd_dounit contrib/navidrome.service
 }
 
-pkg_postinst() {
-}
+#pkg_postinst() {
+#	elog "You may need to edit the '/etc/navidrome.toml' file before"
+#	elog "starting navidrome for the first time"
+#	elog "start the service with 'rc-service navidrome start'"
+#}
 
-pkg_postrm() {
-}
+#pkg_postrm() {
+#}
