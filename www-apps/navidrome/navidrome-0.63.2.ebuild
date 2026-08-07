@@ -20,14 +20,13 @@ fi
 LICENSE="GPL-3.0"
 SLOT="0"
 #IUSE=""
-EGO_SUM=$(cat go.sum | cut -d" " -f1,2 | awk '{print "\""$0"\""}')
 
 DEPEND="acct-user/navidrome
 		"
 RDEPEND="${DEPEND}
 media-video/ffmpeg"
 BDEPEND="dev-lang/go
-		>=net-libs/nodejs-24*
+		>=net-libs/nodejs-24.1.0
 		virtual/zlib
 		"
 
@@ -40,6 +39,7 @@ src_unpack() {
 fi
 
 src_configure() {
+EGO_SUM=$(cat go.sum | cut -d" " -f1,2 | awk '{print "\""$0"\""}')
 	emake setup
 }
 
