@@ -15,6 +15,7 @@ if [[ ${PV} == 9999 ]]; then
 	KEYWORDS=""
 else
 	SRC_URI="https://github.com/navidrome/navidrome/archive/refs/tags/v${PV}.tar.gz -> ${P}.tar.gz"
+	#SRC_URI+=" https://github.com/alinxviso/overlay-files/releases/download/release/navidrome-0.63.2-deps.tar.xz -> ${P}-deps.tar.xz"
 	KEYWORDS="~amd64"
 fi
 LICENSE="GPL-3.0"
@@ -39,7 +40,6 @@ src_unpack() {
 fi
 
 src_configure() {
-EGO_SUM=$(cat go.sum | cut -d" " -f1,2 | awk '{print "\""$0"\""}')
 	emake setup
 }
 
@@ -48,13 +48,6 @@ src_compile() {
 }
 
 src_install() {
-	greadme_stdin <<-EOF
-	To start the service immediately, run:
-	  rc-service <service_name> start
-
-	To start the service at boot, run:
-	  rc-update add <service_name> default
-	EOF
 	dodir /opt/navidrome
 	fowners navidrome:navidrome /opt/navidrome
 	exeinto /opt/navidrome
@@ -67,12 +60,3 @@ src_install() {
 	doinitd contrib/navidrome
 	#systemd_dounit contrib/navidrome.service
 }
-
-#pkg_postinst() {
-#	elog "You may need to edit the '/etc/navidrome.toml' file before"
-#	elog "starting navidrome for the first time"
-#	elog "start the service with 'rc-service navidrome start'"
-#}
-
-#pkg_postrm() {
-#}
