@@ -53,11 +53,17 @@ src_install() {
 	exeinto /opt/navidrome
 	doexe navidrome
 	dodir /etc/navidrome
-	insinto /etc/navidrome
+	insinto /opt/navidrome
 	doins release/linux/navidrome.toml
-	dosym /etc/navidrome/navidrome.toml /opt/navidrome/navidrome.toml
+	dosym /opt/navidrome/navidrome.toml /etc/navidrome/navidrome.toml
 	keepdir /var/lib/navidrome
 	fowners -R navidrome:navidrome /var/lib/navidrome
 	doinitd contrib/navidrome
 	systemd_dounit contrib/navidrome.service
+}
+
+pkg_postinst() {
+	elog "You may want to first edit the default configuration located"
+	elog "at /etc/navidrome/navidrome.toml, or it's canonical location"
+	elog "at /opt/navidrome/navidrome.toml."
 }
