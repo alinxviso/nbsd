@@ -4,7 +4,7 @@
 
 EAPI=8
 
-inherit go-module greadme
+inherit go-module systemd
 
 DESCRIPTION="Navidrome is a self-hosted, open source music server and streamer."
 HOMEPAGE="https://www.navidrome.org"
@@ -55,8 +55,9 @@ src_install() {
 	dodir /etc/navidrome
 	insinto /etc/navidrome
 	doins release/linux/navidrome.toml
+	dosym /etc/navidrome/navidrome.toml /opt/navidrome/navidrome.toml
 	keepdir /var/lib/navidrome
 	fowners -R navidrome:navidrome /var/lib/navidrome
 	doinitd contrib/navidrome
-	#systemd_dounit contrib/navidrome.service
+	systemd_dounit contrib/navidrome.service
 }
