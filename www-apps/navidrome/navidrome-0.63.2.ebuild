@@ -15,7 +15,6 @@ if [[ ${PV} == 9999 ]]; then
 	KEYWORDS=""
 else
 	SRC_URI="https://github.com/navidrome/navidrome/archive/refs/tags/v${PV}.tar.gz -> ${P}.tar.gz"
-	#SRC_URI+=" https://github.com/alinxviso/overlay-files/releases/download/release/navidrome-0.63.2-deps.tar.xz -> ${P}-deps.tar.xz"
 	KEYWORDS="~amd64"
 fi
 LICENSE="GPL-3.0"
