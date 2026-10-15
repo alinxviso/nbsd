@@ -10,19 +10,18 @@ PYTHON_COMPAT=( python3_{13..15} )
 
 inherit distutils-r1
 
-KEYWORDS="~amd64"
-S="${WORKDIR}/${PN}-${EGIT_COMMIT}"
+DESCRIPTION="A Python library for requesting root privileges"
+HOMEPAGE="https://github.com/barneygale/elevate"
 SRC_URI="
 https://github.com/barneygale/elevate/archive/${EGIT_COMMIT}.tar.gz
 	-> ${P}.tar.gz
 "
-
-DESCRIPTION="A Python library for requesting root privileges"
-HOMEPAGE="https://github.com/barneygale/elevate"
+S="${WORKDIR}/${PN}-${EGIT_COMMIT}"
 LICENSE="MIT"
 SLOT="0/$(ver_cut 1-2 ${PV})"
+KEYWORDS="~amd64"
 IUSE+="
-enlightenment gnome kde lxde lxqt mate policykit sudo xfce
+enlightenment +gnome kde lxde lxqt mate +policykit sudo xfce
 "
 REQUIRED_USE+="
 	policykit? (
@@ -115,5 +114,3 @@ ewarn
 
 # OILEDMACHINE-OVERLAY-META:  CREATED-EBUILD
 # OILEDMACHINE-OVERLAY-META-REVDEP:  howdy
-
-
