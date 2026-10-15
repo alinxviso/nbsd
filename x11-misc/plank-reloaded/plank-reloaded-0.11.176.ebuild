@@ -17,7 +17,7 @@ else
 	SRC_URI="${HOMEPAGE}/archive/refs/tags/${PV}.tar.gz -> ${P}.tar.gz"
 	KEYWORDS="~amd64"
 fi
-LICENSE="GPL-3.0"
+LICENSE="GPL-3"
 SLOT="0"
 IUSE="at-spi2-atk"
 
