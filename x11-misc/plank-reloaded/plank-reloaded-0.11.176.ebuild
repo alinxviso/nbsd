@@ -64,15 +64,17 @@ fi
 	meson_src_configure
 }
 
-src_compile() {
-	meson_src_compile
-#	meson compile -C build
-}
+# These are only explicitly called if something else is being changed, otherwise the function automatically calls them
 
-src_install() {
-	meson_src_install
+#src_compile() {
+#	meson_src_compile
+#	meson compile -C build
+#}
+
+#src_install() {
+#	meson_src_install
 #	meson install -C build 
-}
+#}
 
 pkg_postinst() {
 	/usr/bin/glib-compile-schemas '/usr/share/glib-2.0/schemas'
