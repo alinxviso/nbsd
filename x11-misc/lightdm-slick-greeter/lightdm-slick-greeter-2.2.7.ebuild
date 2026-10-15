@@ -51,12 +51,9 @@ src_prepare(){
 	export VALAC="$(type -P valac-$(vala_best_api_version))"
 }
 
-src_configure(){
-	meson_src_configure
-}
-
 src_install(){
-	default_src_install
+#	default_src_install
+	meson_src_install
 	insinto /etc/lightdm
 	doins "${FILESDIR}/${PN//lightdm-}.conf"
 }
