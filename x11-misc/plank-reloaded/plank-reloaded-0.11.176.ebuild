@@ -22,7 +22,7 @@ SLOT="0"
 IUSE=""
 
 DEPEND="
-		at-spi2-core
+		app-accessibility/at-spi2-core
 		dev-libs/glib
 		dev-libs/libdbusmenu
 		dev-libs/libgee
