@@ -4,15 +4,15 @@ I will also consider maintaining projects that aren't in any "official" repo/ove
 
 # List of ebuilds
 
-So far these are the ebuilds in this overlay, with the overlay they're from in the same format portage uses
-i can't figure out how to do the dependecy tarball for navidrome so just disable network-sandbox with a portage/env/blah file
+i can't figure out how to do the dependency tarball for navidrome so just disable network-sandbox with a portage/env/blah file
 
 ```
-dev-python/elevate::oiledmachine-repository
-x11-apps/ocs-url-9999::rion
+dev-python/elevate-0.1.3::oiledmachine-repository, slightly revised by me
+x11-apps/ocs-url-9999::rion, fixed by me
 x11-libs/bamf-9999::edgets
 x11-misc/lightdm-slick-greeter-1.5.1::fem-overlay
-x11-misc/plank-reloaded-9999::nbsd      # this one!!!
-x11-misc/plank-reloaded-0.11.167 to 0.11.169   # also me!!!
-www-apps/navidrome              #yurrr from source
+x11-misc/lightdm-slick-greeter-2.2.7::nbsd and onward
+x11-misc/plank-reloaded-9999::nbsd
+x11-misc/plank-reloaded-0.11.167::nbsd and onward
+www-apps/navidrome-0.63.2::nbsd and onward
 ```
