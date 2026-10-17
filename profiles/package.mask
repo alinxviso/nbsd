@@ -1,0 +1,2 @@
+# basically completely deprecated as meson was fully removed from the project
+=sys-apps/dinit-0.19.4

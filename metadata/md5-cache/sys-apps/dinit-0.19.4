@@ -1,0 +1,12 @@
+BDEPEND=|| ( >=sys-devel/gcc-11.0.0 >=llvm-core/clang-7.0 ) sys-devel/m4 dev-build/meson >=dev-build/meson-1.2.3 app-alternatives/ninja dev-build/meson-format-array
+DEFINED_PHASES=compile configure install postinst postrm test
+DESCRIPTION=A fast, simple, lightweight service manager/supervision system, which can also serve as /sbin/init
+EAPI=8
+HOMEPAGE=https://davmac.org/projects/dinit
+INHERIT=meson shell-completion
+IUSE=+build-shutdown +cgroups fuzzer igr-tests +man unit-test
+LICENSE=Apache-2.0
+SLOT=0
+SRC_URI=https://github.com/davmac314/dinit/archive/refs/tags/v0.19.4.tar.gz -> dinit-0.19.4.tar.gz
+_eclasses_=toolchain-funcs	58a918e3a42d0156f010dcfd43725be5	flag-o-matic	fd3558f73f6503093adee69adf41020d	multiprocessing	45d0620f25c2f063ad6276ecd9ed9399	ninja-utils	d063ea1900a793f93eb095010d6d9156	eapi9-pipestatus	d2c134036ac31c3085aebc9147f572bd	python-utils-r1	025367880f07ae6444e6035a49db0dab	sysroot	4c36abaf94ebd3ab32f8abea9a444121	rust-toolchain	76468983281b0a7fc167ca224f84ecfd	meson	4d3a148e5931f2930e970884bcb4c77d	shell-completion	42587a281b8b546975e45fad82edcb50
+_md5_=52113d8fb150c7e224f5cf87df81ff88

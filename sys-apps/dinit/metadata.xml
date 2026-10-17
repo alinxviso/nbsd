@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "https://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="person">
+		<email>marxguey@proton.me</email>
+		<name>ant</name>
+	</maintainer>
+	<use>
+		<flag name="capabilities">Enable capabilities support via (<pkg>sys-libs/libcap</pkg>)</flag>
+		<flag name="cgroups">Enable Cgroups support</flag>
+		<flag name="fish-completion">Enable fish completion support</flag>
+		<flag name="ioprio">Enable I/O priority setting</flag>
+		<flag name="initgroups">Enable initialization of supplementary groups for run-as</flag>
+		<flag name="oom-adj">Enable support for Linux "OOM" score adjustment</flag>
+		<flag name="shutdown">Build shutdown, poweroff, reboot, soft-reboot, halt programs</flag>
+		<flag name="utmpx">Enable manipulating the utmp/utmpx database via the related POSIX functions</flag>
+	</use>
+</pkgmetadata>
