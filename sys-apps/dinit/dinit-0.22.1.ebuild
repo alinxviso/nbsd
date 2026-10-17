@@ -54,7 +54,7 @@ src_install() {
 	if use bash-completion;then dobashcomp contrib/shell-completion/bash/dinitctl; fi
 	default_src_install
 	insinto /etc/dinit.d
-	doins -r doc/linux/services/* 
+	doins -r doc/linux/services/*
 }
 
 pkg_postinst() {
