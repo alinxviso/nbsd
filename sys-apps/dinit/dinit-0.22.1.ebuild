@@ -54,7 +54,7 @@ src_install() {
 	if use bash-completion;then dobashcomp contrib/shell-completion/bash/dinitctl; fi
 	default_src_install
 	insinto /etc/dinit.d
-	doinst doc/linux/services
+	doins -r doc/linux/services/* 
 }
 
 pkg_postinst() {
@@ -76,5 +76,5 @@ pkg_prerm() {
 
 pkg_postrm() {
 	ewarn "Please ensure that ${PN} is not still set as the default init to ensure a"
-	ewarn "bootable system."
+	ewarn "bootable system after removal."
 }
