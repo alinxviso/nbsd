@@ -25,7 +25,8 @@ BDEPEND="
 	ioprio? ( sys-kernel/linux-headers )
 "
 # files to be saved in /usr/share/doc/${P}
-DOCS=(BUILD CONTRIBUTORS LICENSE NEWS README.md TODO doc/CODE-STYLE doc/COMPARISON doc/DESIGN doc/getting_started.md doc/SECURITY doc/linux/DINIT-AS-INIT.md)
+DOCS=(BUILD CONTRIBUTORS LICENSE NEWS README.md TODO doc/CODE-STYLE doc/COMPARISON doc/DESIGN doc/getting_started.md \
+doc/SECURITY doc/linux/DINIT-AS-INIT.md)
 
 src_configure() {
 	append-cxxflags -std=c++17
@@ -69,7 +70,7 @@ pkg_postinst() {
 
 pkg_prerm() {
 	if [[ $(< /proc/1/comm ) == *"dinit"* ]];then
-		die "PID 1 appears to be dinit. Please do not uninstall it while it is init." 
+		die "PID 1 appears to be dinit. Please do not uninstall it while it is init."
 	fi
 }
 
