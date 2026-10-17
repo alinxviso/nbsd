@@ -23,29 +23,32 @@ SLOT="0"
 IUSE=""
 
 DEPEND="
-	>=dev-qt/qtcore-5.2.0:5
-	>=dev-qt/qtdeclarative-5.2.0:5
-	>=dev-qt/qtquickcontrols-5.2.0:5
-	>=dev-qt/qtsvg-5.2.0:5
+	dev-qt/qtbase:6
+	dev-qt/qtdeclarative:6
+	dev-qt/qtsvg:6
 "
+
 RDEPEND="${DEPEND}"
 
-src_unpack() {
-	git-r3_src_unpack
+if [[ ${PV} == 9999 ]]; then
+	src_unpack() {
+		git-r3_src_unpack
 
-	unset EGIT_BRANCH EGIT_COMMIT
-	EGIT_REPO_URI=https://github.com/akiraohgaki/qtil.git
-	EGIT_CHECKOUT_DIR="${S}/lib/qtil"
-	git-r3_src_unpack
-}
+		unset EGIT_BRANCH EGIT_COMMIT
+		EGIT_REPO_URI=https://github.com/akiraohgaki/qtil.git
+		EGIT_CHECKOUT_DIR="${S}/lib/qtil"
+		git-r3_src_unpack
+	}
+fi
 
 src_prepare(){
 	./scripts/prepare || die
 	default_src_prepare
+	eapply "${FILESDIR}"/allow-build-on-qt6.patch
 }
 
 src_configure(){
-	eqmake5 PREFIX="/usr"
+	eqmake6 PREFIX="/usr"
 }
 
 src_install(){
@@ -54,9 +57,7 @@ src_install(){
 
 pkg_postinst(){
 	xdg_pkg_postinst
-	elog "Thanks for installing ocs-url."
-	elog "You can install packages from any page from"
-	elog "https://www.opendesktop.org or related ones."
-	elog "Just click on \"Install\", and then open the ocs://"
-	elog "url provided by every package."
+	elog "You can install packages from any page from https://www.opendesktop.org or"
+	elog "related Sites. Just click on \"Install\", and then open the \"ocs://\" url"
+	elog "provided by every package."
 }
