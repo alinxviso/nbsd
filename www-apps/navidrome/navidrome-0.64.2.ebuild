@@ -1,12 +1,13 @@
 # Copyright 2025 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
-# Dependencies taken from https://aur.archlinux.org/packages/navidrome-git and https://www.navidrome.org/docs/installation/build-from-source
+# Dependencies taken from https://aur.archlinux.org/packages/navidrome-git
+# Dependencies taken from https://www.navidrome.org/docs/installation/build-from-source
 
 EAPI=8
 
 inherit go-module systemd
 
-DESCRIPTION="Navidrome is a self-hosted, open source music server and streamer."
+DESCRIPTION="Navidrome is a self-hosted, open source music server and streamer"
 HOMEPAGE="https://www.navidrome.org"
 if [[ ${PV} == 9999 ]]; then
 	inherit git-r3
@@ -17,7 +18,7 @@ else
 	SRC_URI="https://github.com/navidrome/navidrome/archive/refs/tags/v${PV}.tar.gz -> ${P}.tar.gz"
 	KEYWORDS="~amd64"
 fi
-LICENSE="GPL-3.0"
+LICENSE="GPL-3"
 SLOT="0"
 #IUSE=""
 
@@ -51,10 +52,10 @@ src_install() {
 	fowners navidrome:navidrome /opt/navidrome
 	exeinto /opt/navidrome
 	doexe navidrome
-	dodir /etc/navidrome
+#	dodir /etc/navidrome
 	insinto /opt/navidrome
 	doins release/linux/navidrome.toml
-	dosym /opt/navidrome/navidrome.toml /etc/navidrome/navidrome.toml
+#	dosym /opt/navidrome/navidrome.toml /etc/navidrome/navidrome.toml
 	keepdir /var/lib/navidrome
 	fowners -R navidrome:navidrome /var/lib/navidrome
 	doinitd contrib/navidrome
@@ -63,6 +64,6 @@ src_install() {
 
 pkg_postinst() {
 	elog "You may want to first edit the default configuration located"
-	elog "at /etc/navidrome/navidrome.toml, or it's canonical location"
+#	elog "at /etc/navidrome/navidrome.toml, or it's canonical location"
 	elog "at /opt/navidrome/navidrome.toml."
 }

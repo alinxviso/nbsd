@@ -1,0 +1,14 @@
+BDEPEND=dev-lang/go >=net-libs/nodejs-24.1.0 virtual/zlib >=dev-lang/go-1.24.11:= app-arch/unzip virtual/pkgconfig
+DEFINED_PHASES=compile configure install postinst unpack
+DEPEND=acct-user/navidrome
+DESCRIPTION=Navidrome is a self-hosted, open source music server and streamer
+EAPI=8
+HOMEPAGE=https://www.navidrome.org
+INHERIT=go-module systemd
+KEYWORDS=~amd64
+LICENSE=GPL-3
+RDEPEND=acct-user/navidrome media-video/ffmpeg
+SLOT=0
+SRC_URI=https://github.com/navidrome/navidrome/archive/refs/tags/v0.64.2.tar.gz -> navidrome-0.64.2.tar.gz
+_eclasses_=toolchain-funcs	58a918e3a42d0156f010dcfd43725be5	flag-o-matic	fd3558f73f6503093adee69adf41020d	multiprocessing	45d0620f25c2f063ad6276ecd9ed9399	sysroot	4c36abaf94ebd3ab32f8abea9a444121	go-env	fca4e820393c2eac25a944be8bdf6a3a	go-module	3d4b6f3f29b3ebdeb708785b3cb1743b	systemd	a964c0cbe818b5729da1dbfcee5be861
+_md5_=9fe71e0a6a46ba42e08cf45aea3915c3
