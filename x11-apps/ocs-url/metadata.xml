@@ -2,7 +2,7 @@
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
 	<maintainer type="person">
-		<name>Ant</name>
+		<name>ant</name>
 		<email>marxguey@proton.me</email>
 	</maintainer>
 </pkgmetadata>
