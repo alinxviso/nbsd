@@ -6,7 +6,7 @@ EAPI=8
 
 inherit meson xdg-utils
 
-DESCRIPTION="A lightweight, customizable Linux dock with modern docklets and GTK support."
+DESCRIPTION="A lightweight, customizable Linux dock with modern docklets and GTK support"
 HOMEPAGE="https://github.com/zquestz/plank-reloaded"
 if [[ ${PV} == 9999 ]]; then
 	inherit git-r3
@@ -17,13 +17,12 @@ else
 	SRC_URI="${HOMEPAGE}/archive/refs/tags/${PV}.tar.gz -> ${P}.tar.gz"
 	KEYWORDS="~amd64"
 fi
-LICENSE="GPL-3.0"
+LICENSE="GPL-3"
 SLOT="0"
-IUSE="at-spi2-atk"
+IUSE=""
 
 DEPEND="
-		at-spi2-atk? ( app-accessibility/at-spi2-atk )
-		!at-spi2-atk? ( dev-libs/atk )
+		app-accessibility/at-spi2-core
 		dev-libs/glib
 		dev-libs/libdbusmenu
 		dev-libs/libgee
@@ -60,18 +59,7 @@ src_configure() {
 if [[ "${PV}" != 9999 ]]; then
 	MYMESONARGs="-Dproduction-release=true"
 fi
-#meson setup --prefix="/usr" build 
 	meson_src_configure
-}
-
-src_compile() {
-	meson_src_compile
-#	meson compile -C build
-}
-
-src_install() {
-	meson_src_install
-#	meson install -C build 
 }
 
 pkg_postinst() {
