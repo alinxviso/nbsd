@@ -10,10 +10,10 @@ SRC_URI="https://github.com/davmac314/dinit/archive/refs/tags/v${PV}.tar.gz -> $
 LICENSE="Apache-2.0"
 SLOT="0"
 KEYWORDS="~amd64"
-IUSE="+bash-completion +capabilities +cgroups fish-completion +initgroups +ioprio +oom-adj +shutdown +utmpx zsh-completion"
+IUSE="+bash-completion +caps +cgroups fish-completion +initgroups +ioprio +oom-adj +sysv-utils +utmpx zsh-completion"
 
 DEPEND="
-	capabilities? ( sys-libs/libcap )
+	caps? ( sys-libs/libcap )
 "
 RDEPEND="
 	${DEPEND}
@@ -29,23 +29,27 @@ DOCS=(BUILD CONTRIBUTORS LICENSE NEWS README.md TODO doc/CODE-STYLE doc/COMPARIS
 doc/SECURITY doc/linux/DINIT-AS-INIT.md)
 
 src_configure() {
-	append-cxxflags -std=c++17
+#	append-cxxflags -std=c++17
+	# bug #979661
+	# don't overwrite upstream flags
+	export CXXFLAGS_EXTRA=${CXXFLAGS}
+	unset CXXFLAGS
+	export LDFLAGS_EXTRA=${LDFLAGS}
+	unset LDFLAGS
+
 	local useconf
 
-	if has nostrip "${FEATURES}" ; then
-		useconf+=" --disable-strip"
-	fi
 
 	econf \
 	--shutdown-prefix="dinit-" \
-	$(use_enable shutdown) \
+	$(use_enable sysv-utils hutdown) \
 	$(use_enable cgroups) \
-	$(use_enable capabilities) \
+	$(use_enable caps capabilities) \
 	$(use_enable ioprio) \
 	$(use_enable oom-adj) \
 	$(use_enable utmpx) \
 	$(use_enable initgroups) \
-	"${useconf}"
+	--disable-strip
 }
 
 src_install() {
