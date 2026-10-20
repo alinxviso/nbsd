@@ -1,3 +1,9 @@
-amd64 hardened-desktop stable
-amd64 hardened-desktop-systemd stable
-amd64 hardened-desktop-split-usr stable
+amd64 linux/amd64/23.0/desktop/hardened stable
+amd64 linux/amd64/23.0/desktop/hardened/systemd stable
+amd64 linux/amd64/23.0/split-usr/desktop/hardened stable
+amd64 linux/amd64/23.0/split-usr/desktop/hardened/systemd stable
+
+amd64 linux/amd64/23.0/desktop/hardened/selinux stable
+amd64 linux/amd64/23.0/desktop/hardened/selinux/systemd stable
+amd64 linux/amd64/23.0/split-usr/desktop/hardened/selinux stable
+amd64 linux/amd64/23.0/split-usr/desktop/hardened/selinux/systemd stable
