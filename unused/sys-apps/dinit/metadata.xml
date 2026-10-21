@@ -6,7 +6,7 @@
 		<name>ant</name>
 	</maintainer>
 	<use>
-		<flag name="capabilities">Enable capabilities support via (<pkg>sys-libs/libcap</pkg>)</flag>
+		<flag name="caps">Enable capabilities support via (<pkg>sys-libs/libcap</pkg>)</flag>
 		<flag name="cgroups">Enable Cgroups support</flag>
 		<flag name="fish-completion">Enable fish completion support</flag>
 		<flag name="ioprio">Enable I/O priority setting</flag>
